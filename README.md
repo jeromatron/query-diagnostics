@@ -1,5 +1,5 @@
 # Query Diagnostics
-This is a simple example of reading and writing to an Apache Cassandra database
+This is a simple example of reading and writing to an [Apache Cassandra](https://cassandra.apache.org) database
 cluster and giving a window into the internal routing and execution tracing within
 the cluster. It utilizes basic logging, Cassandra query tracing, and events from
 the driver's connection to the cluster. The driver events can include
@@ -22,7 +22,7 @@ See the [Byzantine Generals problem](https://en.wikipedia.org/wiki/Byzantine_fau
 for why that is generally.
 
 ## Assumptions
-Apache Maven should be installed along with a recent version of Java (Java 8+).
+[Apache Maven](https://maven.apache.org) should be installed along with a recent version of Java (Java 8+).
 
 In the [application.conf](src/main/resources/application.conf) you'll see that the
 default database address is `localhost` port `9042`.  It also defaults the data center
@@ -37,4 +37,4 @@ To build the project, execute:
 ## To Execute
 To execute the program, run:
 
-`mvn exec:java -D"exec.mainClass"="com.diagnostics.QueryDiagnostics`
+`mvn exec:java -D"exec.mainClass"="com.diagnostics.QueryDiagnostics"`
