@@ -105,7 +105,7 @@ public class QueryDiagnostics {
             builder.append(String.format("%10s | %20s | %s%n", "Elapsed", "Source", "Activity"));
             for (TraceEvent event : trace.getEvents()) {
                 builder.append(String.format(
-                        "%10d | %20s | %10s%n",
+                        "%10d | %20s | %s%n",
                         event.getSourceElapsedMicros(), event.getSource(), event.getActivity()));
             }
             logger.info(builder.toString());
