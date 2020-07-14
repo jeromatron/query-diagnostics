@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
  * Apache Cassandra database cluster while providing a window into how the operations are performed within
  * the cluster.
  */
-public class Diagnostics {
-    private static final Logger logger = LoggerFactory.getLogger(Diagnostics.class);
+public class QueryDiagnostics {
+    private static final Logger logger = LoggerFactory.getLogger(QueryDiagnostics.class);
 
     private static final String KEYSPACE_DEFINITION = "CREATE KEYSPACE IF NOT EXISTS foo WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};";
     private static final String TABLE_DEFINITION    = "CREATE TABLE IF NOT EXISTS foo.bar (id int PRIMARY KEY, value int);";
