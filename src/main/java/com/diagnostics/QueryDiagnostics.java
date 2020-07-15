@@ -1,9 +1,14 @@
 package com.diagnostics;
 
+import com.datastax.oss.driver.api.core.AllNodesFailedException;
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.cql.*;
+import com.datastax.oss.driver.api.core.metadata.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * This Diagnostics class is meant to be a simple example of doing basic DDL and CRUD operations against an
@@ -27,6 +32,8 @@ public class QueryDiagnostics {
             setupSchema(session);
             writeData(session);
             readData(session);
+        } catch (AllNodesFailedException allNodesFailedException) {
+            logger.error(allNodesFailedException.getMessage(), allNodesFailedException);
         } finally {
             if (session != null)
                 session.close();
