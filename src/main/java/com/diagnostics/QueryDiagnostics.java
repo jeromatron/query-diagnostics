@@ -24,7 +24,6 @@ public class QueryDiagnostics {
     private static final String SELECT_STATEMENT    = "select * from foo.bar where id = ?";
     private static final int    NUM_ROWS            = 10;
 
-    // Put in separate config file: schema, possibly connection information
     public static void main (String [] args) throws Exception {
         CqlSession session = null;
         try {
