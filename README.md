@@ -22,17 +22,6 @@ and in this [webinar](https://www.datastax.com/resources/webinar/designing-fault
 about best practices for designing fault tolerant applications. There is also an
 accompanying [demo](https://github.com/datastax/dc-failover-demo) to show best practices around dc-failover with the latest 4.x Java driver.
 
-## Further resources
-- Note in this repo that we've enabled debug logging of `com.datastax.oss.driver.internal.core.channel` [here](src/main/resources/logback.xml#L12) to log connection updates with different nodes in the cluster
-- [Java driver documentation on query tracing](https://docs.datastax.com/en/developer/java-driver/4.7/manual/core/tracing/)
-- [`cqlsh` query tracing](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlshTracing.html)
-- DataStax Studio developer notebooks have [execution configurations that can perform query traces](https://docs.datastax.com/en/studio/6.8/studio/gs/manageRunConfigurations.html)
-- [Interactive request tracing](https://www.datastax.com/blog/2012/11/request-tracing-cassandra-12)
-- [Probabilistic tracing](https://www.datastax.com/blog/2012/11/advanced-request-tracing-cassandra-12)
-- [Packet capture for dynamic tracing](https://cassandra.apache.org/doc/latest/troubleshooting/use_tools.html#packet-capture)
-- [Using Wireshark for dynamic cql tracing](http://www.redshots.com/finding-rogue-cassandra-queries/)
-- [Replacing Cassandra tracing with Zipkin](https://thelastpickle.com/blog/2015/12/07/using-zipkin-for-full-stack-tracing-including-cassandra.html) (this method is not yet possible with DataStax Enterprise)
-
 ## Assumptions
 [Apache Maven](https://maven.apache.org) should be installed along with a recent version of Java (Java 8+).
 
@@ -50,3 +39,14 @@ To build the project, execute:
 To execute the program, run:
 
 `mvn exec:java -D"exec.mainClass"="com.diagnostics.QueryDiagnostics"`
+
+## Additional resources
+- Note in this repo that we've enabled debug logging of `com.datastax.oss.driver.internal.core.channel` [here](src/main/resources/logback.xml#L12) to log connection updates with different nodes in the cluster
+- [Java driver documentation on query tracing](https://docs.datastax.com/en/developer/java-driver/4.7/manual/core/tracing/)
+- [`cqlsh` query tracing](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlshTracing.html)
+- DataStax Studio developer notebooks have [execution configurations that can perform query traces](https://docs.datastax.com/en/studio/6.8/studio/gs/manageRunConfigurations.html)
+- [Interactive request tracing](https://www.datastax.com/blog/2012/11/request-tracing-cassandra-12)
+- [Probabilistic tracing](https://www.datastax.com/blog/2012/11/advanced-request-tracing-cassandra-12)
+- [Packet capture for dynamic tracing](https://cassandra.apache.org/doc/latest/troubleshooting/use_tools.html#packet-capture)
+- [Using Wireshark for dynamic cql tracing](http://www.redshots.com/finding-rogue-cassandra-queries/)
+- [Replacing Cassandra tracing with Zipkin](https://thelastpickle.com/blog/2015/12/07/using-zipkin-for-full-stack-tracing-including-cassandra.html) (this method is not yet possible with DataStax Enterprise)
