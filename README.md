@@ -16,20 +16,21 @@ derives from a limited knowledge of what's going on. See the
 for why that is generally.  However with more information about what is seen at each stage
 through tracing and logging, you will hopefully arrive at a diagnosis more efficiently.
 
-A related topic is multi-data center connections and data center failover.  The logging in this example
-shows what connections are made from the driver to the cluster.  Best practices
+Not considered directly for this example are multi-data center connections and data center failover.  However,
+the logging in this example shows what connections are made from the driver to nodes in the cluster.  Best practices
 for failover, especially in a multi-data center environment, are discussed at length in this
 [white paper](https://www.datastax.com/resources/whitepaper/designing-fault-tolerant-applications-datastax-and-apache-cassandratm)
 and in this [webinar](https://www.datastax.com/resources/webinar/designing-fault-tolerant-applications-datastax-enterprise-and-apache-cassandra)
 about best practices for designing fault tolerant applications. There is also an
 accompanying [demo](https://github.com/datastax/dc-failover-demo) to show best practices around dc-failover with the latest 4.x Java driver.
 
-## Assumptions
-[Apache Maven](https://maven.apache.org) should be installed along with a recent version of Java (Java 8+).
+## Assumptions and requirements
 
-In the [application.conf](src/main/resources/application.conf) you'll see that the
-default database address is `localhost` port `9042`.  It also defaults the data center
-to the Apache Cassandra default of `dc1` when using the `GossipingPropertyFileSnitch`.
+- [Apache Maven](https://maven.apache.org) should be installed and in the path
+- A recent version of Java (Java 8+) should be installed and in the path
+- The [application.conf](src/main/resources/application.conf) should be configured with an address (or addresses) of a server or servers
+running Cassandra or DataStax Enterprise.  You'll see that the default database address is `localhost` port `9042`.
+It also defaults the data center to the Apache Cassandra default of `dc1` when using the `GossipingPropertyFileSnitch`.
 The program assumes that a node of the cluster is running on the localhost.
 
 ## To Build
