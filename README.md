@@ -21,8 +21,8 @@ the logging in this example shows what connections are made from the driver to n
 for failover, especially in a multi-data center environment, are discussed at length in this
 [white paper](https://www.datastax.com/resources/whitepaper/designing-fault-tolerant-applications-datastax-and-apache-cassandratm)
 and in this [webinar](https://www.datastax.com/resources/webinar/designing-fault-tolerant-applications-datastax-enterprise-and-apache-cassandra)
-about best practices for designing fault tolerant applications. There is also an
-accompanying [demo](https://github.com/datastax/dc-failover-demo) to show best practices around dc-failover with the latest 4.x Java driver.
+about designing fault tolerant applications. There is also an accompanying [demo](https://github.com/datastax/dc-failover-demo)
+to show best practices around dc-failover with the latest 4.x Java driver.
 
 ## Assumptions and requirements
 
