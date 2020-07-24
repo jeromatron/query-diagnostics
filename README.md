@@ -16,7 +16,9 @@ derives from a limited knowledge of what's going on. See the
 for why that is generally.  However with more information about what is seen at each stage
 through tracing and logging, you will hopefully arrive at a diagnosis more efficiently.
 
-This example leaves aside data center failover which is discussed at length in this
+A related topic is multi-data center connections and data center failover.  The logging in this example
+shows what connections are made from the driver to the cluster.  Best practices
+for failover, especially in a multi-data center environment, are discussed at length in this
 [white paper](https://www.datastax.com/resources/whitepaper/designing-fault-tolerant-applications-datastax-and-apache-cassandratm)
 and in this [webinar](https://www.datastax.com/resources/webinar/designing-fault-tolerant-applications-datastax-enterprise-and-apache-cassandra)
 about best practices for designing fault tolerant applications. There is also an
