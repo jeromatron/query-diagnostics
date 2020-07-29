@@ -1,14 +1,24 @@
-package com.diagnostics;
+/*
+ * Copyright DataStax, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.datastax.examples;
 
-import com.datastax.oss.driver.api.core.AllNodesFailedException;
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.cql.*;
-import com.datastax.oss.driver.api.core.metadata.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * This Diagnostics class is meant to be a simple example of doing basic DDL and CRUD operations against an
@@ -18,11 +28,12 @@ import java.util.Map;
 public class QueryDiagnostics {
     private static final Logger logger = LoggerFactory.getLogger(QueryDiagnostics.class);
 
-    private static final String KEYSPACE_DEFINITION = "CREATE KEYSPACE IF NOT EXISTS foo WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};";
-    private static final String TABLE_DEFINITION    = "CREATE TABLE IF NOT EXISTS foo.bar (id int PRIMARY KEY, value int);";
-    private static final String INSERT_STATEMENT    = "INSERT INTO foo.bar (id, value) values (?, ?);";
-    private static final String SELECT_STATEMENT    = "select * from foo.bar where id = ?";
-    private static final int    NUM_ROWS            = 10;
+    private static final String     KEYSPACE_DEFINITION = "CREATE KEYSPACE IF NOT EXISTS foo WITH replication = {'class': 'NetworkTopologyStrategy', 'dc1' : 1};";
+    private static final String     TABLE_DEFINITION    = "CREATE TABLE IF NOT EXISTS foo.bar (id int PRIMARY KEY, value int);";
+    private static final String     INSERT_STATEMENT    = "INSERT INTO foo.bar (id, value) values (?, ?);";
+    private static final String     SELECT_STATEMENT    = "select id, value from foo.bar where id = ?";
+    private static final boolean    TRACE_QUERIES       = true;
+    private static final int        NUM_ROWS            = 10;
 
     public static void main (String [] args) throws Exception {
         CqlSession session = null;
@@ -31,8 +42,8 @@ public class QueryDiagnostics {
             setupSchema(session);
             writeData(session);
             readData(session);
-        } catch (AllNodesFailedException allNodesFailedException) {
-            logger.error(allNodesFailedException.getMessage(), allNodesFailedException);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         } finally {
             if (session != null)
                 session.close();
@@ -70,9 +81,9 @@ public class QueryDiagnostics {
     private static void writeData(CqlSession session) {
         final PreparedStatement prepared = session.prepare(INSERT_STATEMENT);
         BoundStatement bound = null;
-        for (int i=0; i<NUM_ROWS; i++) {
+        for (int i = 0; i < NUM_ROWS; i++) {
             logger.info("Writing with id " + i);
-            bound = prepared.bind(i, i).setTracing(true);
+            bound = prepared.bind(i, i).setTracing(TRACE_QUERIES);
             execute(session, bound);
         }
     }
@@ -86,7 +97,7 @@ public class QueryDiagnostics {
         BoundStatement bound = null;
         for (int i=0; i<NUM_ROWS; i++) {
             logger.info("Reading with id " + i);
-            bound = prepared.bind(i).setTracing(true);
+            bound = prepared.bind(i).setTracing(TRACE_QUERIES);
             execute(session, bound);
         }
     }
